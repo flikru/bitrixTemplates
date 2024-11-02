@@ -1,0 +1,106 @@
+.form_default.form .field_cont{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	column-gap: 20px;
+	row-gap: 10px;
+}
+.mainForm .form_default.form .field_cont, .mainForm .form_default.form .field{
+	max-width: 100%;
+}
+.mainForm .form_default.form .field{
+	 width: calc( 33% - 20px );
+	position: relative;
+ }
+.mainForm .form_default.form .field_cont_submit .button{
+	border: none;
+	outline: none;
+}
+.fotter-form-def{
+	display: flex;
+	gap: 30px;
+	align-items: center;
+}
+.mainForm .form_default.form input[type='file']{
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #c9c9c9;
+	border: 1px solid #fefefe;
+
+}
+.mainForm .form_default.form input[type='text']{
+	width: 100%;
+	font-size: 14px;
+	line-height: 105.47%;
+	background-color: #fafafa;
+	height: 40px;
+	background: #FAFAFA;
+	border: 1px solid #E6E6E6;
+	border-radius: 3px;
+	box-shadow: none;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	line-height: normal;
+	padding: 11px 13px;
+}
+.label-for-file{
+	display: inline-block;
+	padding:10px 12px;
+	cursor: pointer;
+	color: #8D8D8D;
+	background-color: #ffffff;
+	border: 1px solid #8D8D8D;
+	border-radius: 3px;
+	box-shadow: inset 0px 7px 13px -7px #8D8D8D;
+	transition: all 0.4s;
+}
+.label-for-file:hover{
+	box-shadow: inset 0px 0px 6px 1px #8D8D8D;
+}
+.file-input-container{
+	display: flex;
+	white-space: nowrap;
+	align-items: center;
+	gap: 7px;
+}
+.hidden-file{
+	opacity: 0.01;
+	position: absolute;
+	left: -999em;
+}
+.mainForm-action .mainForm__content{
+	width: 100%;
+	max-width: 100%;
+}
+.mainForm-action .form select{
+	margin: 0px;
+	width: 100%;
+}
+.mainForm-action .form .label-form{
+	color: #8D8D8D;
+	font-size: 12px;
+	margin-bottom: 3px;
+}
+#captcha-error{
+	color: #ff0000;
+}
+.invalid-field input{
+	border: 1px solid #ff0000 !important;
+}
+.mainForm .form_default.form .field_cont{
+	width: 100%;
+}
+@media screen and (max-width: 991px) {
+	.mainForm .form_default.form .field{
+		width: calc( 50% - 20px );
+	}
+	.mainForm .form_default.form .field_cont{
+		width: 100%;
+	}
+}@media screen and (max-width: 767px) {
+	.mainForm .form_default.form .field{
+		width: 100%;
+	}
+}
