@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>javascript</title>
     <script src="main.js"></script>
+    <script src="ball.js"></script>
 </head>
 <body>
+<div id="score">0</div>
+<button id="btnBall">A</button>
+
 <div class="divs">
 		<span class="spans">
 			<input type="text">
@@ -43,9 +47,9 @@
 		ОТправка в космос FETCH
 	</p>
 	<form action="json.html" name="form1" id="form1" method="post">
-		<input type="text" id="i1" name="i1" value="feeetch">
-		<input type="text" id="i2" name="i2" value="435345435">
-		<input type="submit" value="ОТправить">
+		<input type="text" id="i1" name="i1" value="feeetch"><br>
+		<input type="text" id="i2" name="i2" value="435345435"><br>
+		<input type="submit" value="ОТправить"><br>
 	</form>
 	<div id="resFetch"></div>
 </div>
@@ -56,21 +60,43 @@
 		ОТправка IZ космос AJAX
 	</p>
 	<form action="json.html" name="form2" id="form2" method="get">
-		<input type="text" id="i3" name="i4" value="ahhhhhax">
-		<input type="text" id="i4" name="i3" value="22">
-		<input type="submit" value="ОТправить">
+		<input type="text" id="i3" name="i4" value="ahhhhhax"><br>
+		<input type="text" id="i4" name="i3" value="22"><br>
+		<input type="submit" value="Отправить">
 	</form>
 	<div id="resAjax"></div>
 </div>
 <hr>
 <div class="btn-cnt">
 	<button id="loadfetch">PRESS</button>
+	<button id="addForm">Добавить поле</button>
 </div>
 </body>
 <style>
     .redBorder{
         border: 1px solid red;
     }
+	.input_class{
+		padding: 10px 15px;
+		font-weight: 800;
+		margin-bottom: 10px;
+	}
+	#btnBall{
+		border-radius: 100%;
+		width: 150px;
+		height: 150px;
+		background-color: green;
+		box-shadow: 1px 2px 10px 10px green;
+		cursor: pointer;
+		position: fixed;
+		top: 100px;
+		left: 100px;
+		transition: all 4s;
+		border-bottom: 2px solid #ff0000;
+		border-top: 2px solid #0016ff;
+		border-left: 2px solid #18ff00;
+		border-right: 2px solid #ffd500;
+	}
 </style>
 
 </html>

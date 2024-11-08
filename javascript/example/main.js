@@ -5,6 +5,8 @@ function main(event){
     /*
     * События
     * */
+    let addBtn = document.querySelector("#addForm").addEventListener('click', addInput);
+
     let btnlog = document.querySelector("#loadfetch");
     btnlog.addEventListener('click', setText);
 
@@ -144,4 +146,31 @@ function loadFile(){
             formData.append('files[]', file);
         }
     });
+}
+function addInput(){
+    let forms = document.querySelectorAll("form");
+    let cnt = 0;
+
+    for(form in forms){
+        console.log(form)
+        inptcnt=0;
+        let inputs = forms[form].querySelectorAll("input");
+        for(inpt in inputs){
+            console.log(inptcnt);
+            inptcnt++;
+        }
+        let inputadd = document.createElement("input");
+        let br = document.createElement("br");
+        if(inptcnt%2==0){
+            inputadd.type="submit";
+            inputadd.value="Я кнопка № "+inptcnt;
+        }else{
+            inputadd.value="Я текст № "+inptcnt;
+        }
+        inputadd.name="input_"+inptcnt;
+        inputadd.classList.add("input_class");
+        forms[form].prepend(inputadd,br);
+
+    }
+
 }
