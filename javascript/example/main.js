@@ -29,7 +29,7 @@ function main(event){
                 char = text.replace('вот', "<b>поменял текст</b>")
                 htmlp[c].innerHTML = char;
             }
-            console.log(char);
+            //console.log(char);
         }
 
         iText = el.querySelectorAll("input[type=text]");

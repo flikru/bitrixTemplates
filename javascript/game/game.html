@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <script src="ball.js"></script>
+</head>
+<body>
+<div id="score">0</div>
+
+<div class="fort"></div>
+</body>
+<style>
+    .redBorder{
+        border: 1px solid red;
+    }
+    body{
+        width: 100%;
+        margin: 0px;
+        height: 100vh;
+        background-color: #2e7070;
+        background-image: url("image/bg.jpg");
+        background-size: 486px;
+    }
+    .fort{
+        background-color: #c9c9c9;
+        width: 100%;
+        height: 80px;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        background-image: url("image/fort.png");
+        background-size: 256px;
+    }
+    .input_class{
+        padding: 10px 15px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+    .enemy{
+        border-radius: 100%;
+        width: 100px;
+        height: 100px;
+        padding: 0px;
+        margin: 0px;
+        /*background-color: green;
+        box-shadow: 0px 0px 10px 10px green;*/
+        cursor: pointer;
+        position: fixed;
+        top: 100px;
+        left: 100px;
+        transition: all 0.2s;
+        /*border-bottom: 2px solid #ff0000;
+        border-top: 2px solid #0016ff;
+        border-left: 2px solid #18ff00;
+        border-right: 2px solid #ffd500;*/
+        font-size: 11px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        color: #fff;
+        background-image: url("image/enemy.gif");
+        background-size: 100% 100%;
+    }
+    .gameObject{
+        background-color: #00ffec;
+        position: fixed;
+    }
+    #player{
+        position: fixed;
+        width: 100px;
+        height: 120px;
+        bottom: 0px;
+        left: 50%;
+        border-radius: 10px;
+        z-index: 300;
+        background-image: url("image/canon.gif");
+        background-size: 100%;
+    }
+    /*
+    #player:before{
+        background-color: #00ffec;
+        border: 2px solid #000;
+        content: "";
+        position: absolute;
+        height: 50px;
+        width: 15px;
+        left: calc( 50% - 9px );
+        bottom: 60%;
+        border-radius: 5px;
+    }*/
+    .bullet{
+        height: 20px;
+        width: 20px;
+        position: fixed;
+        box-shadow: 2px 2px 5px 0px #4b4b4b;
+        transition: transform 1s;
+        background-image: url('image/core.png');
+        background-size: 100% 100%;
+        border-radius: 100%;
+    }
+    .bullet_bum{
+        transform: scale(3);
+        background-image: url('image/bum.png');
+        height: 50px;
+        width: 50px;
+        z-index: 100;
+        box-shadow: none;
+    }
+    body{
+    }
+</style>
+
+</html>

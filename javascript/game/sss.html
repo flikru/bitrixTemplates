@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Движение элемента с изменением траектории</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Скрыть полосу прокрутки */
+        }
+        #moving-element {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            border-radius: 50%; /* Круглая форма элемента */
+        }
+    </style>
+</head>
+<body>
+<div id="moving-element"></div>
+
+<script>
+    const element = document.getElementById('moving-element');
+    let posX = Math.random() * window.innerWidth; // Начальная позиция по X
+    let posY = Math.random() * window.innerHeight; // Начальная позиция по Y
+    let speedX = 10; // Скорость по X
+    let speedY = 10; // Скорость по Y
+
+    function animate() {
+        // Обновление позиции элемента
+        posX += speedX;
+        posY += speedY;
+
+        // Проверка столкновения с границей окна
+        if (posX + element.offsetWidth > window.innerWidth || posX < 0) {
+            speedX = -speedX; // Изменение направления по X
+        }
+        if (posY + element.offsetHeight > window.innerHeight || posY < 0) {
+            speedY = -speedY; // Изменение направления по Y
+        }
+
+        // Установка новой позиции элемента
+        element.style.left = `${posX}px`;
+        element.style.top = `${posY}px`;
+
+        requestAnimationFrame(animate); // Запрос следующего кадра анимации
+    }
+
+    animate(); // Запуск анимации
+</script>
+</body>
+</html>
