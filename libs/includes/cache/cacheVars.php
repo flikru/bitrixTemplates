@@ -1,29 +1,23 @@
 <?
 use \Bitrix\Main\Data\Cache;
-//$seoItem = dataCache('zapchasti_seo_'.$APPLICATION->GetCurPage(), "getElementList", 4*60*60, 'zapchastiSEO', 1, [$seoFilter,$seoSelect]);
-function dataCache($cacheKey, $function, $cacheTime = 60*60*4, $cachePath='allCache',$reset=0,$args){
-    if($reset==1) $cacheTime=1;
+//$result = dataCache('popular_items_'.$APPLICATION->GetCurPage(), "getPopularItems", 4*60*60, 'popular_items', [$arFilter,$arSelect]);
+//$result = dataCache('popular_items', "getPopularItems", $cacheTime);;
+function dataCache($cacheKey, $function, $cacheTime = 60*60*4, $cachePath='allCache',$args=[]){
+    $cache = Cache::createInstance();
 
-    $cache = Cache::createInstance(); // Служба кеширования
-
-    $cacheTtl = $cacheTime; // срок годности кеша (в секундах)
-    $cacheKey = $cacheKey; // имя кеша
-    $cachePath = $cachePath; // папка, в которой лежит кеш
-
-    if ($cache->initCache($cacheTtl, $cacheKey, $cachePath))
-    {
-        $vars = $cache->getVars(); // Получаем переменные
-        $cache->output(); // Выводим HTML пользователю в браузер
-    }
-    elseif ($cache->startDataCache())
-    {
-        //$vars = $function($args);
+    if ($cache->initCache($cacheTime, $cacheKey, $cachePath)) {
+        //echo "cache<br>";
+        $vars = $cache->getVars();
+        $cache->output();
+    }elseif ($cache->startDataCache()){
+        //echo "load<br>";
         $vars = call_user_func_array($function, $args);
         $cacheInvalid = false;
-        if ($cacheInvalid or empty($vars))
-        {
+
+        if ($cacheInvalid or empty($vars)){
             $cache->abortDataCache();
         }
+
         $cache->endDataCache($vars);
     }
     return $vars;
