@@ -3,10 +3,13 @@ use \Bitrix\Main\Data\Cache;
 //$result = dataCache('popular_items_'.$APPLICATION->GetCurPage(), "getPopularItems", 4*60*60, 'popular_items', [$arFilter,$arSelect]);
 //$result = dataCache('popular_items', "getPopularItems", $cacheTime);;
 function dataCache($cacheKey, $function, $cacheTime = 60*60*4, $cachePath='allCache',$args=[]){
+
+    $cacheTime = !isset($_GET['clear_cache'])? $cacheTime : 1 ;
+
     $cache = Cache::createInstance();
 
     if ($cache->initCache($cacheTime, $cacheKey, $cachePath)) {
-        //echo "cache<br>";
+        echo "cache<br>";
         $vars = $cache->getVars();
         $cache->output();
     }elseif ($cache->startDataCache()){
