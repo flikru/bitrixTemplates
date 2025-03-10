@@ -1,12 +1,12 @@
-<? require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-createYML();
+<?php
 function createYML(){
+
     if (CModule::IncludeModule("iblock")){
 
         $IBLOCK_ID = 1;
 
         $out = '<?xml version="1.0" encoding="UTF-8"?>' . "\r\n";
-        $out .= '<yml_catalog date="' . date('Y-m-d H:i', strtotime('+2 hours')) . '">' . "\r\n";
+        $out .= '<yml_catalog date="' . date('Y-m-d H:i', strtotime('+4 hours')) . '">' . "\r\n";
         $out .= '<shop>' . "\r\n";
 
         $out .= '<name>Компания "ЛОС Маркет"</name>' . "\r\n";
@@ -57,7 +57,7 @@ function createYML(){
         $arElemFilter = array('IBLOCK_ID' => $IBLOCK_ID,
             "PROPERTY_brand"=>[1044,5,8,1005,999,1230,1142,924,1152]
         );
-        $arElemSelect = array('ID', 'NAME', 'CODE', 'IBLOCK_SECTION_ID', 'PREVIEW_PICTURE', 'PREVIEW_TEXT','DETAIL_TEXT', 'PROPERTY_brand', 'PROPERTY_price', 'PROPERTY_*', 'ACTIVE');
+        $arElemSelect = array('ID', 'NAME', 'CODE', 'IBLOCK_SECTION_ID', 'PREVIEW_PICTURE',"DETAIL_PICTURE", 'PREVIEW_TEXT','DETAIL_TEXT', 'PROPERTY_brand', 'PROPERTY_price', 'PROPERTY_*', 'ACTIVE');
         $rsElement    = CIBlockElement::GetList(array('ID' => 'ASC'), $arElemFilter, false, ['nTopCount'=>15111], $arElemSelect);
 
 
@@ -92,7 +92,7 @@ function createYML(){
                 $propList = [
                     'cable_diameter',
                     'diameter',
-                    'count_text',
+                    //'count_text',
                     'count',
                     'type_stok',
                     'deep_pipe',
@@ -113,7 +113,7 @@ function createYML(){
                     'degree_treatment',
                     'equipment'
                 ];
-                $resProp     = CIBlockElement::GetProperty($IBLOCK_ID, $arElement['ID'], array(), []);
+                $resProp     = CIBlockElement::GetProperty($IBLOCK_ID, $arElement['ID'], array("value_id"), ["EMPTY"=>"N", "ACTIVE "=>"Y"]);
                 $props=[];
                 while ($arProp = $resProp->Fetch()){
 
@@ -123,14 +123,18 @@ function createYML(){
                     if($arProp['PROPERTY_TYPE'] == "L"){
                         $arProp['VALUE'] = $arProp['VALUE_ENUM'];
                     }
-
-
                     if(is_array($arProp['VALUE'])){
                         $arProp['VALUE'] = implode(", ",$arProp['VALUE']);
                     }
 
                     $arProp['VALUE'] = htmlspecialchars(strip_tags($arProp['VALUE']));
-                    $props[] = $arProp;
+
+                    if(!isset($props[$arProp['ID']])){
+                        $props[$arProp['ID']] = $arProp;
+                    }else{
+                        $props[$arProp['ID']]['VALUE'] .= ", ".$arProp['VALUE'];
+                    }
+
                 }
 
                 //Получение всех свойств end
@@ -142,7 +146,11 @@ function createYML(){
                 $out .= '<price>' . $elem_price . '</price>' . "\r\n";
                 $out .= '<currencyId>RUB</currencyId>' . "\r\n";
                 $out .= '<categoryId>' . $arElement['IBLOCK_SECTION_ID'] . '</categoryId>' . "\r\n";
-                $out .= '<picture>https://los-market.ru' . CFile::GetPath($arElement['PREVIEW_PICTURE']) . '</picture>' . "\r\n";
+
+                if(!empty($arElement['DETAIL_PICTURE'])){
+                    $out .= '<picture>https://los-market.ru' . CFile::GetPath($arElement['DETAIL_PICTURE']) . '</picture>' . "\r\n";
+                }
+
                 $out .= '<name>'.$arElement['NAME'].'</name>' . "\r\n";
                 $out .= '<description>' . stripslashes($arElement['DETAIL_TEXT']) . '</description>' . "\r\n";
                 $out .= '<param name="Бренд">' . $arBrand['NAME'] . '</param>' . "\r\n";
@@ -163,8 +171,8 @@ function createYML(){
         $out .= '</shop>' . "\r\n";
         $out .= '</yml_catalog>' . "\r\n";
 
-
-        echo ($out);
+        echo $out;
+        return;
 
         $dom = new DOMDocument;
         $dom->preserveWhiteSpace = FALSE;
@@ -175,4 +183,4 @@ function createYML(){
 
     return 'createYML();';
 }
-header( "content-type: application/xml; charset=utf-8" );
+?>
