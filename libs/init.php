@@ -27,4 +27,10 @@ if (!function_exists('vd')) {
     }
 }
 
+function savelog($data){
+    $log = date('Y-m-d H:i:s') . ' Запись в лог';
+    $log .= print_r($data, true);
+    file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/log.txt', $log . PHP_EOL, FILE_APPEND);
+}
+
 ?>
