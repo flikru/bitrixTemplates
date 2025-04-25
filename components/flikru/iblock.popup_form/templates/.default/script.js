@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", function() {
     var modal = document.querySelector(".flk_modal_container");
     var form = modal.querySelector("form");
     let modal_id = modal.getAttribute("modal_id");
-/*
-    if(document.querySelector("#openFeedback") ){
-        document.querySelector("#openFeedback").onclick = function() {
-            modal.style.display = "block";
-        };
-    }*/
+    /*
+        if(document.querySelector("#openFeedback") ){
+            document.querySelector("#openFeedback").onclick = function() {
+                modal.style.display = "block";
+            };
+        }*/
 
     form.addEventListener('submit', function (e){
         e.preventDefault();
@@ -29,9 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
         setCookie(modal_id,"1",24*1);
     };
 
+    modal.onclick = (e) => {if (e.target === modal) modal.style.display = "none"};
+
     setTimeout(()=>{
         modal.style.display = "block";
-    },5000);
+    },2000);
 });
 
 async function sendRequest(form) {
@@ -62,7 +64,7 @@ async function sendRequest(form) {
 
             if(data.success==true){
                 //yaMetrika("feedbackform_success");
-                let modal_id = this.getAttribute("modal_id");
+                let modal_id = form.getAttribute("modal_id");
                 listPage(99);
                 setCookie(modal_id,"1",24*1);
             }

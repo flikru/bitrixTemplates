@@ -20,17 +20,17 @@ if(isset($_COOKIE['modal_id_'.$arParams['MODAL_ID']])){
                 <?endif;?>
                 <?if(!empty($arParams['DESCRIPTION'])):?>
                     <div class="flk-form-description">
-                        <?=$arParams['DESCRIPTION'];?>
+                        <?=$arParams['~DESCRIPTION'];?>
                     </div>
                 <?endif;?>
                 <div class="flk-form-container">
                     <form action="">
                         <?foreach($arResult['FIELDS'] as $FIELD):?>
-                        <? $pref = $FIELD["IS_REQUIRED"]=="Y"?"*":""?>
-                        <div class="flk-form-item form-group <?=$FIELD["HINT"]?>">
-                            <label style="<?=$FIELD["INPUT_TYPE"]=="checkbox"?"":"display: none"?>" for="id_<?=$FIELD["CODE"]?>"><?=$FIELD["NAME"].$pref?></label>
-                            <input value="<?=($arParams['FIELDS'][$FIELD['CODE']])??""?>" <?=$pref?"required":""?> type="<?=$FIELD["INPUT_TYPE"]?>" placeholder="<?=$FIELD["NAME"].$pref?>" id="id_<?=$FIELD["CODE"]?>" class="styler-disabled <?=$FIELD["INPUT_TYPE"]=="checkbox"?"":"form-control"?> <?=$FIELD["HINT"]?>" name="<?=$FIELD["CODE"]?>">
-                        </div>
+                            <? $pref = $FIELD["IS_REQUIRED"]=="Y"?"*":""?>
+                            <div class="flk-form-item form-group <?=$FIELD["HINT"]?>">
+                                <label style="<?=$FIELD["INPUT_TYPE"]=="checkbox"?"":"display: none"?>" for="id_<?=$FIELD["CODE"]?>"><?=$FIELD["NAME"].$pref?></label>
+                                <input value="<?=($arParams['FIELDS'][$FIELD['CODE']])??""?>" <?=$pref?"required":""?> type="<?=$FIELD["INPUT_TYPE"]?>" placeholder="<?=$FIELD["NAME"].$pref?>" id="id_<?=$FIELD["CODE"]?>" class="styler-disabled <?=$FIELD["INPUT_TYPE"]=="checkbox"?"":"form-control"?> <?=$FIELD["HINT"]?>" name="<?=$FIELD["CODE"]?>">
+                            </div>
                         <?endforeach;?>
                         <input type="submit" class="btn btn_gr" value="<?=$arParams['BTN_NAME']??"Оставить заявку"?>">
                     </form>
