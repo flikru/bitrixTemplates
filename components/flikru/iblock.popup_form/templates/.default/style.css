@@ -1,0 +1,129 @@
+.flk_modal_container {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    bottom: 150px;
+    z-index: 10000;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    background-color: #00000078;
+}
+.flk-form-success .form-text{
+    font-size: 24px;
+}
+.flk-form-title{
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #011016;
+    margin-bottom: 30px;
+}
+.flk-form-item input[type=checkbox],.flk-form-item label{
+    margin: 0px;
+}
+.flk-form-item input[type=checkbox]{
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+}
+.flk-form-item label{
+    cursor: pointer;
+}
+.flk-form-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.flk_modal_container .close{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 35px;
+    transition: all 0.6s;
+    line-height: 20px;
+}
+.flk_modal_container textarea{
+    width: 100%;
+    min-height: 0px;
+    height: 100px;
+    padding: 10px;
+    font-size: 14px;
+}
+.flk-form-logo{
+    text-align: center;
+    height: 150px;
+    margin-bottom: 20px;
+}
+.flk-form-logo img{
+    width: auto;
+    height: 100%;
+}
+.flk_modal_container .modal-content{
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 600px;
+    max-height: 90%;
+    overflow: auto;
+    height: auto;
+}
+.flk_modal_container .modal-content form{
+    width: 100%;
+}
+.success-message, .error-message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+}
+
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+}
+.error-field{
+    font-size: 11px;
+    margin-top: 5px;
+    color: #ff0c0c;
+}
+.flk-form-description{
+    margin-bottom: 20px;
+    text-align: left;
+}
+.f_stars{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.f_star{
+    display: inline-block;
+    cursor: pointer;
+    font-size: 50px;
+    color: #c1c1c1;
+    transition: color 0.7s;
+}
+.f_star:hover{
+    color: #68b3ff;
+}
+.f_star.star-full{
+    color: #68b3ff;
+}
+.form_page{
+    display: none;
+    width: 100%;
+}
+.form_page>div{
+    margin-bottom: 10px;
+}
+.form_page.active{
+    display: block;
+}
