@@ -1,8 +1,10 @@
 <?
 use \Bitrix\Main\Data\Cache;
-//$result = dataCache('popular_items_'.$APPLICATION->GetCurPage(), "getPopularItems", 4*60*60, 'popular_items', [$arFilter,$arSelect]);
+//$result = dataCache('popular_items_'.$APPLICATION->GetCurPage(), "getPopularItems", 4, 'popular_items', [$arFilter,$arSelect]);
 //$result = dataCache('popular_items', "getPopularItems", $cacheTime);;
-function dataCache($cacheKey, $function, $cacheTime = 60*60*4, $cachePath='allCache',$args=[]){
+function dataCache($cacheKey, $function, $hours = 4, $cachePath='allCache',$args=[]){
+
+    $cacheTime = 60*60*$hours;
 
     $cacheTime = !isset($_GET['clear_cache'])? $cacheTime : 1 ;
 
