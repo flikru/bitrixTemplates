@@ -27,4 +27,39 @@ function dataCache($cacheKey, $function, $hours = 4, $cachePath='allCache',$args
     }
     return $vars;
 }
-?>
+
+
+//$arResult = dataCacheArray("getList", [["SORT" => "ASC"], $arFilter, $arSelect,["nTopCount"=>5]], 4, 'mainpage_certificats');
+function dataCacheArray($nameFunction, $argumentsFunction = [], $timeCache = 4, $folderCache = 'allCache')
+{
+    $cacheTime = 60 * 60 * $timeCache;
+
+    $cacheKey = md5($nameFunction . '_' . serialize($argumentsFunction));
+
+    $cacheTime = !isset($_GET['clear_cache']) ? $cacheTime : 0;
+
+    $cache = Bitrix\Main\Data\Cache::createInstance();
+
+    if ($cache->initCache($cacheTime, $cacheKey, $folderCache)) {
+        return $cache->getVars();
+    } elseif ($cache->startDataCache()) {
+        try {
+            $vars = call_user_func_array($nameFunction, $argumentsFunction);
+            $cacheInvalid = false;
+
+            if ($cacheInvalid || $vars === false || $vars === null) {
+                $cache->abortDataCache();
+                return $vars;
+            }
+
+            $cache->endDataCache($vars);
+            return $vars;
+
+        } catch (Exception $e) {
+            $cache->abortDataCache();
+            throw $e;
+        }
+    }
+
+    return null;
+}
